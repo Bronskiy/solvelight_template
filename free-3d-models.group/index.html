@@ -1,0 +1,101 @@
+{embed="_assets/.header"}
+
+<div class="main-container">
+  <div class="main">
+    <div class="clear"></div>
+    <div class="main-container col2-left-layout">
+      <div class="main category-main">
+        <div class="breadcrumbs">
+        {exp:channel:category_heading channel="free_3d_models"}
+        {if no_results}
+        <a href="/">Home</a> <i class="fa fa-angle-double-right"></i> Free 3D Models
+      </div>
+      <div class="category-left">
+        <div class="col-main">
+          <div class="page-title category-title">
+            <h1>Free 3D Models</h1>
+          </div>
+        {/if}
+          <a href="/">Home</a> <i class="fa fa-angle-double-right"></i> {category_name}
+        </div>
+        <div class="category-left">
+          <div class="col-main">
+            <div class="page-title category-title">
+              <h1>{category_name}</h1>
+            </div>
+            {/exp:channel:category_heading}
+            <div class="category-products">
+              <ul class="products-grid products-grid-side3 products-grid-side first last odd">
+                {exp:channel:entries sort="asc" limit="15" channel="free_3d_models" disable="category_fields|member_data" paginate="bottom" cache="yes" refresh="48000"}
+                {if no_results}<div id="notification">Empty category</div>{/if}
+                <li class="item">
+                  <div class="content_top">
+                    <a href="{free_3d_models_3d_model}" class=" quick-view "><i class="fa fa-cloud-download"></i> Download</a>
+                    <a class="product-image" href="{url_title_path='free_3d_models/detail'}" ><img src="{free_3d_models_preview_image:small}" /></a>
+                    <div class="productgrid-area">
+                      <div class="productname">
+                        <h2 class="product-name"><a href="{url_title_path='free_3d_models/detail'}">{title}</a></h2>
+                      </div>
+                      <div class="actions">
+                        <div class="vert">
+                        </div>
+                        <div class="inner-actions">
+                          {free_3d_models_description}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                {if count == 0 || count == total_results}
+              </ul>
+              {/if}
+              <div class="toolbar-bottom">
+                <div class="toolbar">
+                  <div class="pager">
+                    {paginate}
+                    {pagination_links}
+                    <div class="row pagging">
+                      <div class="col-lg-12 col-md-12">
+                        <ul class="pagination pagination-lg">
+                          {previous_page}<li><a href="{pagination_url}" aria-label="Prev"><span aria-hidden="true">&laquo;</span></a></li>{/previous_page}
+                          {page}
+                          <li {if current_page}class="active"{/if}><a href="{pagination_url}">{pagination_page_number}</a></li>
+                          {/page}
+                          {next_page}<li><a href="{pagination_url}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>{/next_page}
+                        </ul>
+                      </div>
+                    </div>
+                    {/pagination_links}
+                    {/paginate}
+                  </div>
+                </div>
+              </div>
+              {/exp:channel:entries}
+            </div>
+          </div>
+          <div class="col-left sidebar">
+            <div class="block block-category-nav">
+              <div class="block-title">
+                <strong><span>Categories</span></strong>
+              </div>
+              <div class="block-content">
+                <dl id="narrow-by-list2">
+                  <dt></dt>
+                  <dd>
+                    <ul class="tree dynamized">
+                      {exp:channel:categories channel="free_3d_models" style="linear" parent_only="yes" cache="yes" refresh="48000"}
+                      <li {if active}class="selected"{/if}><a href="{path='free_3d_models'}"><span class="errow fa-angle-right"></span>{category_name}</a></li>
+                      {/exp:channel:categories}
+                    </ul>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+            {embed="_assets/sidebar_bestseller"}
+            {embed="_assets/sidebar_special"}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {embed="_assets/.footer"}

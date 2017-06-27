@@ -1,0 +1,446 @@
+{embed="_assets/.header"}
+{exp:brilliant_retail:product}
+{if no_results}<div id="notification"><h1>The product you requested is not available.</h1></div>{/if}
+<!--Breadcrumb Start-->
+<div class="breadcrumb-container">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="breadcrumbs">
+					<ul>
+						<li class="home"><a href="{exp:brilliant_retail:path src='site_index'}">Home</a><span>/ </span></li>
+						{if '{category_title}' != ''}
+						<li><a href="{exp:brilliant_retail:path src='catalog/{category_url}'}">{category_title}</a><span>/ </span></li>
+						{/if}
+						<li><strong>{title}</strong></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--End of Breadcrumb-->
+<!--Product Details Area Start-->
+<div class="product-deails-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-9 col-md-9">
+				<div class="product-details-content row">
+					<div class="col-lg-6 col-md-6 col-sm-6">
+						<div class="zoomWrapper">
+							<div id="img-1" class="zoomWrapper single-zoom">
+								<a href="#">
+									{exp:ce_img:single src="/media/{image_large}" id="zoom1" data-zoom-image="/media/{image_large}" width="409" height="551" crop="yes"}
+								</a>
+							</div>
+							{if {image_total} >= 2}
+							<div class="product-thumb row">
+								<ul class="p-details-slider" id="gallery_01">
+									{images}
+									<li class="col-md-4">
+										<a class="elevatezoom-gallery" href="{exp:brilliant_retail:geturl type='media_url'}{filenm}" data-image='{exp:ce_img:single src="/media/{filenm}" width="409" height="551" crop="yes" allow_scale_larger="yes" output="{made}"}' data-zoom-image="{exp:brilliant_retail:geturl type='media_url'}{filenm}">{exp:brilliant_retail:image src="{filenm}" title="{title}" width="86" height="116"}</a>
+									</li>
+									{/images}
+								</ul>
+							</div>
+							{/if}
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6">
+						<div class="product-details-conetnt">
+							<div class="shipping">
+								{exclusive_offer}
+								<div class="single-service">
+									<span class="fa {exclusive_offer:icon}"></span>
+									<div class="service-text-container">
+										<h3>{exclusive_offer:title}</h3>
+										<p>{exclusive_offer:description}</p>
+									</div>
+								</div>
+								{/exclusive_offer}
+							</div>
+							<div class="product-name">
+								<h1>{title}</h1>
+							</div>
+							{exp:brilliant_retail:show_message}
+							<p class="extra-statuses">
+								{extra_statuses}
+								<span class="{item}">{item}</span>
+								{/extra_statuses}
+							</p>
+							<p class="no-rating no-margin"><a href="#disqus_thread">Comments</a> | <a onclick="$('a[href=\'#disqus_thread\']').trigger('click');$('#disqus_thread').goTo();">Write a review</a></p>
+							<p class="product-brand"><span>Brand:</span> {embed="product/.manufacturer_category" product_id="{product_id}"}</p>
+							<p class="availability">Availability:
+								{if in_stock == FALSE}
+								<span class="out-of-stock">Out of Stock</span>
+								{if:else}
+								<span>In stock</span>
+								{/if}
+							</p>
+							{if on_sale && sale_price_end != ''}
+							<h2>Sale Off</h2>
+							<div class="timer">
+								<div data-countdown="{sale_price_end format='%Y/%m/%d'}" class="timer-grid"></div>
+							</div>
+							{/if}
+							<div class="price-box">
+								{if on_sale}
+								<p class="old-price">
+									<span class="price">${base}</span>
+								</p>
+								<p class="special-price">
+									<span class="price">${price}</span>
+								</p>
+								{if:else}
+								<p class="special-price">
+									<span class="price">${price}</span>
+								</p>
+								{/if}
+								{if has_tiered_price}
+								{tiered_price}
+								<span class="reward"><small>Buy {tiered_qty} for {tiered_price} save {tiered_discount_percent}% ({tiered_discount_value})</small></span>
+								{/tiered_price}
+								{/if}
+							</div>
+							<div class="compare-price">
+								<h2>Found it cheaper?</h2>
+								<a href="{path='price-match-request/{segment_2}'}"><span>Click here to price match!</span></a>
+							</div>
+							<div class="details-description">
+								<h2>Available Options</h2>
+								<div class="options">
+
+									<div class="option">
+										{configurable}
+
+										<span>{configurable_label}</span>
+										{configurable_select}<br />
+										{/configurable}
+
+										{configurable_js}
+									</div>
+
+									<div class="option">
+										{options}
+
+										<span>{option_label}</span>
+										{option_input}
+
+										{/options}
+
+									</div>
+									<br>
+									{/if}
+								</div>
+							</div>
+							<div class="add-to-buttons">
+								<div class="addthis_sharing_toolbox"></div>
+								<ul>
+									<li><a title="Add to Wishlist" href="{exp:brilliant_retail:wishlist_add product_id="{product_id}" status="public" return="customer/wishlist"}"><i class="fa fa-heart"></i></a></li>
+									<li><a href="/contact" title="Contact Us"><i class="fa fa-envelope"></i></a></li>
+								</ul>
+							</div>
+							{if in_stock}
+							<div class="add-to-cart-qty">
+								<div class="cart-qty-button">
+									{if {type_id} != 7}
+									<label for="qty">Qty:</label>
+									{quantity_select}
+									{if:else}
+									<input type="hidden" name="{product_id}_quantity" value="1" size="2" />
+									{/if}
+									<button class="button btn-cart" type="submit"><span>Add to Cart</span></button>
+								</div>
+							</div>
+							{/if}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<div class="p-details-tab">
+							<ul role="tablist" class="nav nav-tabs">
+								<li class="active" role="presentation"><a data-toggle="tab" role="tab" aria-controls="description" href="#description">Description</a></li>
+								<li role="presentation"><a data-toggle="tab" role="tab" aria-controls="specs" href="#specs">Specification</a></li>
+								<li role="presentation"><a data-toggle="tab" role="tab" aria-controls="video" href="#video">Video</a></li>
+								{!-- <li role="presentation"><a data-toggle="tab" role="tab" aria-controls="reviews" href="#reviews">Reviews</a></li> --}
+								<li role="presentation"><a data-toggle="tab" role="tab" aria-controls="comments" href="#comments">Comments</a></li>
+							</ul>
+						</div>
+						<div class="clearfix"></div>
+						<div class="tab-content review product-details">
+							<div id="description" class="tab-pane active" role="tabpanel">
+								{!-- {detail} --}
+								{product_description_full}
+							</div>
+							<div id="specs" class="tab-pane" role="tabpanel">
+								{attribute}
+								<h3>{label}</h3>
+								<div>{value}</div>
+								{/attribute}
+								{if product_specification}
+								<table class="attribute table table-bordered table-hover">
+									<thead>
+										<tr>
+											<td colspan="2">Product Details</td>
+										</tr>
+									</thead>
+									<tbody>
+										{product_specification}
+										<tr>
+											<td>{product_specification:title}</td>
+											<td>{product_specification:value}</td>
+										</tr>
+										{/product_specification}
+									</tbody>
+								</table>
+								{/if}
+								{if docs}
+								<div class="manufacturer-list">
+									<div class="manufacturer-heading">Downloads</div>
+									<div class="manufacturer-content">
+										<ul>
+											{docs}
+											<li><a href="{docs:file}">{docs:title}</a></li>
+											{/docs}
+										</ul>
+									</div>
+								</div>
+								{/if}
+							</div>
+							<div id="video" class="tab-pane" role="tabpanel">
+								<div class="video-container">
+									{video}
+								</div>
+							</div>
+							{!--
+							<div id="reviews" class="tab-pane" role="tabpanel">
+								<div class="row">
+									<div class="col-lg-5 col-md-3 col-sm-12">
+										<div class="review-left">
+											<p><span> Review by </span> <a href="#">BootExperts</a></p>
+											<div class="review-rating">
+												<p>price</p>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+											</div>
+											<div class="review-rating">
+												<p>value</p>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+											</div>
+											<div class="review-rating">
+												<p>quality</p>
+												<div class="rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+											</div>
+											<p>BootExperts <span class="italic">(Posted on 11/3/2016)</span></p>
+										</div>
+									</div>
+									<div class="col-lg-7 col-md-9 col-sm-12">
+										<div class="review-right">
+											<h3>You're reviewing: Tristique ut lectus</h3>
+											<h4>How do you rate this product? *</h4>
+											<form method="post" action="mail.php">
+												<div class="p-details-table table-responsive">
+													<table>
+														<thead>
+															<tr>
+																<th></th>
+																<th><span>1 star</span></th>
+																<th><span>2 stars</span></th>
+																<th><span>3 stars</span></th>
+																<th><span>4 stars</span></th>
+																<th><span>5 stars</span></th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<th>Price</th>
+																<td><input type="radio" value="" class="radio"></td>
+																<td><input type="radio" value="" class="radio"></td>
+																<td><input type="radio" value="" class="radio"></td>
+																<td><input type="radio" value="" class="radio"></td>
+																<td><input type="radio" value="" class="radio"></td>
+															</tr>
+															<tr>
+																<th>Value</th>
+																<td><input type="radio" value="" class="radio"></td>
+																<td><input type="radio" value="" class="radio"></td>
+																<td><input type="radio" value="" class="radio"></td>
+																<td><input type="radio" value="" class="radio"></td>
+																<td><input type="radio" value="" class="radio"></td>
+															</tr>
+															<tr>
+																<th>Quality</th>
+																<td><input type="radio" value="" class="radio"></td>
+																<td><input type="radio" value="" class="radio"></td>
+																<td><input type="radio" value="" class="radio"></td>
+																<td><input type="radio" value="" class="radio"></td>
+																<td><input type="radio" value="" class="radio"></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="form-top">
+													<div class="row">
+														<div id="review-form">
+															<div class="form-group col-sm-12 col-md-12 col-lg-12">
+																<label>Nickname<span class="required" title="required">*</span></label>
+																<input type="text" name="name" class="form-control">
+															</div>
+															<div class="form-group col-sm-12 col-md-12 col-lg-12">
+																<label>Summary of Your Review<span class="required" title="required">*</span></label>
+																<input type="text" name="subject" class="form-control">
+															</div>
+															<div class="form-group col-sm-12 col-md-12 col-lg-12">
+																<label>Review<span class="required" title="required">*</span></label>
+																<textarea name="message" class="yourmessage"></textarea>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="buttons-set">
+													<button class="button" type="submit"><span>Submit Review</span></button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+							--}
+							<div id="comments" class="tab-pane" role="tabpanel">
+								<div id="disqus_thread"></div>
+								<script type="text/javascript">
+								/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+								var disqus_shortname = 'solvelight'; // required: replace example with your forum shortname
+
+								/* * * DON'T EDIT BELOW THIS LINE * * */
+								(function() {
+									var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+									dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+									(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+								})();
+								</script>
+								<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+								<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="section-top-padding">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="section-title"><h2>Product Tags</h2></div>
+						</div>
+					</div>
+					<div class="popular-tags">
+						<ul class="tag-list">
+							{product_tags backspace="2"}
+							<li>
+								<a href="/product/tags/{websafe_tag}">
+									{tag} ({total_entries})
+								</a>
+							</li>
+							{/product_tags}
+						</ul>
+					</div>
+					{embed="product/.latest"}
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				{exp:brilliant_retail:product_related product_id="{product_id}"}
+				<div class="single-products-category">
+					<div class="section-title"><h2>Related PRODUCTS</h2></div>
+					<div class="category-products">
+						{related_products limit="4"}
+						<div class="product-items">
+							<div class="p-category-image">
+								<a title="{related_title}" href="{exp:brilliant_retail:path src='product/{related_url}'}">
+									{exp:brilliant_retail:image src="{related_thumb}" width="80" height="100"}
+								</a>
+							</div>
+							<div class="p-category-text">
+								<h2 class="category-product-name"><a title="{related_title}" href="{exp:brilliant_retail:path src='product/{related_url}'}">{exp:snippet total="60"}{related_title}{/exp:snippet}</a></h2>
+
+								{exp:query sql="SELECT
+								exp_br_product_price.product_id as related_product_id,
+								exp_br_product_price.price as related_price
+								FROM
+								exp_br_product_price
+								WHERE
+								exp_br_product_price.product_id = {product_id}
+								limit 1" cache="yes" refresh="48000"}
+
+								<div class="price-box">
+									<p class="special-price">
+										<span class="price">${related_price}</span>
+									</p>
+								</div>
+								{/exp:query}
+
+								{!--
+									<div class="price-box">
+									{if on_sale}
+									<p class="old-price">
+										<span class="price">${base}</span>
+									</p>
+									<p class="special-price">
+										<span class="price">${price}</span>
+									</p>
+									{if:else}
+									<p class="special-price">
+										<span class="price">${price}</span>
+									</p>
+									{/if}
+								</div>
+								--}
+							</div>
+						</div>
+						{/related_products}
+					</div>
+				</div>
+				{/exp:brilliant_retail:product_related}
+				{embed="product/.sidebar_featured"}
+				<div class="sidebar-content">
+					<div class="section-title no-margin"><h2>Popular Tags</h2></div>
+					<div class="popular-tags">
+						<ul class="tag-list">
+							{exp:tag:cloud
+								channel="brilliantretail_1"
+								most_popular="25"
+								limit="25"
+								orderby="total_entries"
+								cache="yes" refresh="48000"	}
+								<li>
+									<a href="/product/tags/{websafe_tag}">
+										{tag} ({total_entries})
+									</a>
+								</li>
+								{/exp:tag:cloud}
+							</ul>
+						</div>
+					</div>
+					{embed="product/.sidebar_banner"}
+				</div>
+			</div>
+		</div>
+	</div>
+	{/exp:brilliant_retail:product}
+	{embed="_assets/.manufacturer"}
+	{embed="_assets/.footer"}

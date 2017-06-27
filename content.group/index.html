@@ -1,0 +1,24 @@
+{embed="_assets/.header"}
+{exp:channel:entries channel="content" limit="1" url_title="{segment_2}" disable="categories|member_data|pagination|trackbacks"}
+{if no_results} {redirect="404"} {/if}
+<div class="home-hello-info">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="f-title text-center">
+					<h3 class="title text-uppercase">{title}</h3>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="about-page-cntent">
+					{general-content}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{/exp:channel:entries}
+{embed="_assets/.manufacturer"}
+{embed="_assets/.footer"}

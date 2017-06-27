@@ -1,0 +1,200 @@
+{embed="_assets/.header"}
+<!--Breadcrumb Start-->
+<div class="breadcrumb-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="breadcrumbs">
+          <ul>
+            <li class="home"><a href="/">Home</a><span>/ </span></li>
+            <li><strong>Blog</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End of Breadcrumb-->
+<!--Blog Post Area Start-->
+<div class="blog-page-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="left-blog-sidebar">
+          <div class="sidebar-content">
+            <div class="section-title"><h2>Search</h2></div>
+            <form action="#" id="blog-search">
+              <input type="text" placeholder="Search" />
+              <button class="submit"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+          <div class="sidebar-content post fix">
+            <div class="section-title"><h2>Recent posts</h2></div>
+            <ul>
+              {exp:channel:entries channel="blog" limit="3" sticky="no" disable="categories|category_fields|member_data|pagination" cache="yes" refresh="48000" dynamic="no"}
+              <li>
+                <div class="post-thumb"><a href="{url_title_path='blog'}"><img src="{blog_img:recent}" alt="{title}" /></a></div>
+                <div class="post-info"><a href="{url_title_path='blog'}">{title}</a><span>{entry_date format="%F %d, %Y"}</span></div>
+              </li>
+              {/exp:channel:entries}
+            </ul>
+          </div>
+          <div class="sidebar-content">
+            <div class="section-title no-margin"><h2>Popular Tags</h2></div>
+            <div class="popular-tags">
+              <ul class="tag-list">
+                {exp:tag:cloud
+                  channel="blog"
+                  groups="2"
+                  rank_by="entries"
+                  limit="15"
+                }
+                <li><a href="{path='blog/tags'}/{websafe_tag}">{tag} ({total_entries})</a></li>
+
+                {/exp:tag:cloud}
+              </ul>
+              <div class="tag-actions">
+                <a href="#">View All Tags</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {exp:switchee variable="{segment_2}" parse="inward"}
+
+      {case value="|category|#P([0-9]+)#"}
+      <div class="col-md-9">
+        {exp:channel:entries channel="blog" limit="8" disable="categories|category_fields|member_data" sticky="no" orderby="date" sort="desc" status="open|featured" cache="yes" refresh="48000" paginate="bottom" dynamic="no"}
+        <div class="single-blog fix {if count==total_results}no-margin{/if}">
+          <div class="post-thumbnail">
+            <a href="{url_title_path='blog'}"><img src="{blog_img:small}" alt="{title}" /></a>
+          </div>
+          <div class="postinfo-wrapper">
+            <div class="post-date">
+              <span class="day">{entry_date format="%d"}</span><span class="month">{entry_date format="%M"}</span>
+            </div>
+            <div class="post-info">
+              <h1 class="blog-post-title">
+                <a href="{url_title_path='blog'}">{title}</a>
+              </h1>
+              <div class="entry-meta">
+                Posted by <span class="author vcard"><a class="url fn n" href="#" title="View all posts by admin" rel="author">{author}</a></span>
+              </div>
+              <div class="entry-summary">
+                <p>{blog_summary}</p>
+              </div>
+              <a class="read-button" href="{url_title_path='blog'}"><span>Read more</span></a>
+            </div>
+          </div>
+        </div>
+        {paginate}
+        <div class="row">
+          <div class="col-md-12">
+            <div class="pagination-content">
+              <div class="pagination-button">
+  {pagination_links}
+    <ul class="pagination">
+
+      {previous_page}
+        <li><a href="{pagination_url}"><i class="fa fa-caret-left"></i></a></li>
+      {/previous_page}
+
+      {page}
+        <li><a href="{pagination_url}" class="page-{pagination_page_number} {if current_page}active{/if}">{pagination_page_number}</a></li>
+      {/page}
+
+      {next_page}
+        <li><a href="{pagination_url}"><i class="fa fa-caret-right"></i></a></li>
+      {/next_page}
+
+    </ul>
+  {/pagination_links}
+
+          <span><strong>Page: </strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+{/paginate}
+
+{/exp:channel:entries}
+      </div>
+      {/case}
+
+      {case value="tags"}
+      <p>tags</p>
+      {/case}
+
+      {case value="#P([0-9]+)#"}
+      <p>detail</p>
+      {/case}
+
+      {case default="Yes"}
+      <div class="col-md-9">
+        {exp:channel:entries channel="blog" limit="1" disable="categories|category_fields|member_data|pagination" require_entry="yes" cache="yes" refresh="48000"}
+        <div class="single-blog no-margin">
+          <div class="post-thumbnail"><img src="{blog_img:small}" alt="{title}" /></div>
+          <div class="postinfo-wrapper">
+            <div class="post-date">
+              <span class="day">{entry_date format="%d"}</span><span class="month">{entry_date format="%M"}</span>
+            </div>
+            <div class="post-info">
+              <h1 class="blog-post-title">{title}</h1>
+              <div class="entry-meta">
+                Posted by <span class="author vcard"><a class="url fn n" href="#" title="View all posts by admin" rel="author">{author}</a></span>
+              </div>
+              <div class="entry-summary">
+                {blog_content}
+                {if blog_video}
+                <div class="videoWrapper">
+                {blog_video}
+              </div>
+              {/if}
+              </div>
+              <div class="entry-meta">
+                <a href="#disqus_thread">Comments</a><span class="author vcard">/ Tags:</span> /
+                {exp:tag:tags
+                  entry_id="{entry_id}"
+                  orderby="tag_name" sort="asc"
+                  limit="5"
+                  websafe_separator="-"
+                  backspace="2"
+                }
+                <a href="{path='blog/tags'}/{websafe_tag}">
+                  {tag}
+                </a>,
+                {/exp:tag:tags}
+
+              </div>
+              <div class="share-icon">
+                <div class="addthis_sharing_toolbox"></div>
+              </div>
+
+              <div class="reply-comment-area">
+                <div><div id="disqus_thread"></div>
+                <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES * * */
+                var disqus_shortname = 'solvelight';
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/exp:channel:entries}
+      </div>
+    </div>
+    {/case}
+
+    {/exp:switchee}
+  </div>
+</div>
+{embed="_assets/.manufacturer"}
+{embed="_assets/.footer"}

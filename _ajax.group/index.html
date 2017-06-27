@@ -1,0 +1,78 @@
+{exp:brilliant_retail:product}
+{if no_results}<div id="notification"><h1>The product you requested is not available.</h1></div>{/if}
+<div class="modal-header">
+	<button type="button" onclick="javascript:window.location.reload()" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body">
+	<div class="modal-product">
+		<div class="product-images">
+			<div class="main-image images">
+				{exp:brilliant_retail:image src="{image_large}" watermark="logo_fn.png" watermark_vpos="bottom" mode="matte" watermark_hpos="right" id="image" width="319" height="430"}</a>
+			</div>
+		</div>
+		<div class="shipping">
+			{exclusive_offer}
+			<div class="single-service">
+				<span class="fa {exclusive_offer:icon}"></span>
+				<div class="service-text-container">
+					<h3>{exclusive_offer:title}</h3>
+					<p>{exclusive_offer:description}</p>
+				</div>
+			</div>
+			{/exclusive_offer}
+		</div>
+		<div class="product-info">
+			<h1>{title}</h1>
+			{exp:brilliant_retail:show_message}
+			<p class="product-brand"><span>Brand:</span> {embed="product/.manufacturer_category" product_id="{product_id}"}</p>
+
+			<p class="availability">Availability:
+				{if in_stock == FALSE}
+				<span>Out of Stock</span>
+				{if:else}
+				<span>In stock</span>
+				{/if}
+			</p>
+			<div class="price-box">
+				{if on_sale}
+				<p class="old-price">
+					<span class="price">${base}</span>
+				</p>
+				<p class="special-price">
+					<span class="price">${price}</span>
+				</p>
+				{if:else}
+				<p class="special-price">
+					<span class="price">${price}</span>
+				</p>
+				{/if}
+				{if has_tiered_price}
+				{tiered_price}
+				<span class="reward"><small>Buy {tiered_qty} for {tiered_price} save {tiered_discount_percent}% ({tiered_discount_value})</small></span>
+				{/tiered_price}
+				{/if}
+			</div>
+			<a href="/product/{url_title}" class="see-all">See all features</a>
+			<div class="quick-add-to-cart">
+				<div class="cart-qty-button">
+					{if {type_id} != 7}
+					<label for="qty">Qty:</label>
+					{quantity_select}
+					{if:else}
+					<input type="hidden" name="{product_id}_quantity" value="1" size="2" />
+					{/if}
+					<button class="button btn-cart" type="submit"><span>Add to Cart</span></button>
+				</div>
+			</div>
+			<div class="quick-desc">
+			</div>
+			<div class="social-sharing">
+				<div class="widget widget_socialsharing_widget">
+					<h3 class="widget-title-modal">Share this product</h3>
+					<div class="addthis_sharing_toolbox"></div>
+				</div>
+			</div>
+		</div><!-- .product-info -->
+	</div>
+</div>
+{/exp:brilliant_retail:product}

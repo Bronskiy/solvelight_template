@@ -1,0 +1,100 @@
+{embed="_assets/.header" title_override=“Price Match Request” default_title="Price Match Request"}
+{exp:brilliant_retail:product url_title="{segment_2}"}
+<div id="notification">{exp:brilliant_retail:show_message}</div>
+<div class="home-hello-info">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="f-title text-center">
+					<h3 class="title text-uppercase">Price Match Request For {title}</h3>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-2 col-md-2 col-sm-12">
+			</div>
+			<div class="col-lg-8 col-md-8 col-sm-12 address">
+				<div class="contact-us-form">
+					<div class="contact-form">
+						{/exp:brilliant_retail:product}
+						{exp:freeform:form
+							form_id="2"
+							inline_errors="yes"
+							form:role="form"
+							required="first_name|email|price_to_be_matched|url_to_price|user_message"
+							require_captcha="yes"
+							return="price-match-request/thank_you"
+						}
+						<div class="form-top">
+							<div class="form-group col-sm-12 col-md-12 col-lg-12">
+								{if freeform:general_errors}
+								<h2>There were some error(s) with your submission:</h2>
+								<ul>
+									{freeform:general_errors}
+									<li style="color:red;">{freeform:error_message}</li>
+									{/freeform:general_errors}
+								</ul>
+								{/if}
+							</div>
+							<div class="form-group col-sm-12 col-md-12 col-lg-12">
+								{if freeform:error:first_name}
+								<span style="color:red;">{freeform:error:first_name}</span><br>
+								{/if}
+							</div>
+							<div class="form-group col-sm-12 col-md-12 col-lg-12">
+								<label>{freeform:label:first_name}<span class="required" title="required">*</span></label>
+								{freeform:field:first_name attr:class="form-control"}
+							</div>
+							<div class="form-group col-sm-12 col-md-12 col-lg-12">
+								{if freeform:error:email}
+								<span style="color:red;">E-Mail Address does not appear to be valid!</span><br>
+								{/if}
+							</div>
+							<div class="form-group col-sm-12 col-md-12 col-lg-12">
+								<label>{freeform:label:email}<span class="required" title="required">*</span></label>
+								{freeform:field:email attr:class="form-control"}
+							</div>
+							<div class="form-group col-sm-12 col-md-12 col-lg-12">
+								{if freeform:error:price_to_be_matched}
+								<span style="color:red;">Price To Be Matched field is required!</span><br>
+								{/if}
+							</div>
+							<div class="form-group col-sm-12 col-md-12 col-lg-12">
+								<label>{freeform:label:price_to_be_matched}<span class="required" title="required">*</span></label>
+								{freeform:field:price_to_be_matched attr:class="form-control"}
+							</div>
+							<div class="form-group col-sm-12 col-md-12 col-lg-12">
+								{if freeform:error:url_to_price}
+								<span style="color:red;">URL To Price field is required!</span><br>
+								{/if}
+							</div>
+							<div class="form-group col-sm-12 col-md-12 col-lg-12">
+								<label>{freeform:label:url_to_price}<span class="required" title="required">*</span></label>
+								{freeform:field:url_to_price attr:class="form-control"}
+							</div>
+							<div class="form-group col-sm-12 col-md-12 col-lg-12">
+								<br>
+								{if freeform:captcha}
+								{freeform:captcha}<br>
+								<br>
+								<label>Enter the above text<span class="required" title="required">*</span></label>
+								<input type="text" class="contact-info-input" name="captcha" id="captcha">
+								{/if}
+							</div>
+							<div class="submit-form form-group col-sm-12 submit-review">
+								<p class="floatright"><sup>*</sup> Required Fields</p>
+								<div class="clearfix"></div>
+								{freeform:submit attr:class="button floatright" attr:value="Submit"}
+							</div>
+						</div>
+						{/exp:freeform:form}
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12">
+			</div>
+		</div>
+	</div>
+</div>
+{embed="_assets/.manufacturer"}
+{embed="_assets/.footer"}

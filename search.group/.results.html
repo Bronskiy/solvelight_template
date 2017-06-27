@@ -1,0 +1,26 @@
+{exp:brilliant_retail:results}
+  {if no_results}
+      <div class="search-header-message">
+        <h3>Sorry, no results matched the search terms you provided.</h3>
+      </div>
+  {/if}
+  <ul class="header-details">
+    {results}
+    <li class="header-product">
+        {form_open}
+        <div class="product_image">
+          <a href="{path='product/{url}'}">
+            {if image_thumb != ''}
+              <img src="/media/{image_thumb}"/>
+            {/if}
+          </a>
+        </div>
+        <div class="product_desc">
+          <p><a href="{path='product/{url}'}">{exp:snippet total="60"}{title}{/exp:snippet}</a></p>
+          <span class="price">${price}</span>
+        </div>
+        {form_close}
+    </li>
+    {/results}
+  </ul>
+{/exp:brilliant_retail:results}

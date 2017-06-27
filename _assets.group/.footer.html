@@ -1,0 +1,200 @@
+<!--Service Area Start-->
+<div class="service-area">
+  <div class="container">
+    <div class="service-padding">
+      <div class="row">
+        {exp:channel:entries channel="home_text_ad" limit="4" orderby="random" disable="categories|category_fields|member_data|pagination" status="open|featured" cache="yes" refresh="48000" dynamic="no"}
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+          <div class="single-service">
+             {if home_text_ad_icon}<span class="fa {home_text_ad_icon}"></span>{/if}
+            <h3>{title}</h3>
+            <p>{home_text_ad_description}</p>
+          </div>
+        </div>
+        {/exp:channel:entries}
+      </div>
+    </div>
+  </div>
+</div>
+<!--End of Service Area-->
+<!--Footer Widget Area Start-->
+<div class="footer-widget-area">
+  <div class="container">
+    <div class="footer-widget-padding">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+          <div class="single-widget">
+            <div class="footer-widget-title">
+              <h3>Community</h3>
+            </div>
+            <div class="footer-widget-list ">
+              {exp:navee:nav nav_title="community-footer"}
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 hidden-sm col-xs-12">
+          <div class="single-widget">
+            <div class="footer-widget-title">
+              <h3>My account</h3>
+            </div>
+            <div class="footer-widget-list ">
+              {exp:navee:nav nav_title="account-menu"}
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+          <div class="single-widget">
+            <div class="footer-widget-title">
+              <h3>Contact us</h3>
+            </div>
+            <div class="footer-widget-list ">
+              <ul class="address">
+                <li><span class="fa fa-map-marker"></span> Address: {site_address}</li>
+                <li><span class="fa fa-phone"></span> {site_phone}</li>
+                <li class="support-link"><span class="fa fa-envelope-o"></span> <a href="mailto:{site_email}">{site_email}</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+          <div class="single-widget">
+            <div class="footer-widget-title">
+              <h3>Sign up for newsletter</h3>
+            </div>
+            <div class="footer-widget-list ">
+              <form id="newsletter" method="post" action="#">
+                <div class="newsletter-content">
+                  <input type="text" name="email">
+                  <button class="button" type="submit"><span>Subscribe</span></button>
+                </div>
+              </form>
+              {exp:navee:nav nav_title="social_menu" class="social-link"}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End of Footer Widget Area-->
+<!--Footer Area Start-->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-padding">
+      <div class="row">
+        <div class="col-lg-7 col-md-7 col-sm-8">
+          <nav>
+            {exp:navee:nav nav_title="help-links" id="footer-menu"}
+
+            <p class="author">Copyright © 2013 - {current_time format="%Y"} Solvelight Robotics, LLC. All Rights Reserved.</p><p class="author">Developed By <a href="http://www.iconicline.com" target="_blank">IconicLine</a></p>
+          </nav>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-4">
+          <div class="payment-image">
+            <ul>
+								<li><i class="fa fa-cc-amex"></i></li>
+								<li><i class="fa fa-cc-discover"></i></li>
+								<li><i class="fa fa-cc-paypal"></i></li>
+								<li><i class="fa fa-cc-mastercard"></i></li>
+								<li><i class="fa fa-cc-visa"></i></li>
+								<li><i class="fa fa-credit-card"></i></li>
+								<li><i class="fa fa-btc"></i></li>
+							</ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!--End of Footer Area-->
+<!--Quickview Product Start -->
+<div id="quickview-wrapper">
+  <!-- Modal -->
+  <div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--End of Quickview Product-->
+{embed="_assets/.newsletter"}
+{if embed:seo_title == 'checkout'}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+{exp:minimee:js}
+<script type="text/javascript" src="/assets/br/js/plugins.js"></script>
+<script type="text/javascript" src="/assets/br/js/promo.js"></script>
+{/exp:minimee:js}
+{exp:brilliant_retail:js}
+	$(function(){
+		$('.search_txt','#main_search')
+			.bind('click',function(){
+				$(this).val('');
+			})
+			.bind('blur',function(){
+				var a = $(this);
+				if(a.val() == ''){
+					a.val('search products');
+				}
+		});
+	});
+
+	/* Navigation Drop Down Effects */
+		sfHover = function() {
+			var sfEls = document.getElementById("nav").getElementsByTagName("LI");
+			for (var i=0; i<sfEls.length; i++) {
+				sfEls[i].onmouseover=function() {
+					this.className+=" sfhover";
+				}
+				sfEls[i].onmouseout=function() {
+					this.className=this.className.replace(new RegExp(" sfhover\\b"), "");
+				}
+			}
+		}
+		if (window.attachEvent) window.attachEvent("onload", sfHover);
+
+{/exp:brilliant_retail:js}
+{if:else}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+{/if}
+{!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}
+{exp:minimee:js}
+<script src="/assets/js/bootstrap.min.js"></script>
+{if embed:current_page == 'home'}
+<script src="/assets/lib/nivo-slider/js/jquery.nivo.slider.js" type="text/javascript"></script>
+<script src="/assets/lib/nivo-slider/home.js" type="text/javascript"></script>
+{/if}
+<script src="/assets/js/wow.min.js"></script>
+<script src="/assets/js/jquery.meanmenu.js"></script>
+<script src="/assets/js/owl.carousel.min.js"></script>
+<script src="/assets/js/jquery-price-slider.js"></script>
+<script src="/assets/js/jquery.scrollUp.min.js"></script>
+<script src="/assets/js/jquery.countdown.min.js"></script>
+<script src="/assets/js/jquery.form.min.js"></script>
+<script src="/assets/js/jquery.sticky.js"></script>
+<script src="/assets/js/jquery.elevateZoom-3.0.8.min.js"></script>
+<script src="/assets/js/plugins.js"></script>
+<script src="/assets/js/main.js"></script>
+<script type="text/javascript">
+ /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+ var disqus_shortname = 'solvelight'; // required: replace example with your forum shortname
+
+ /* * * DON'T EDIT BELOW THIS LINE * * */
+ (function () {
+     var s = document.createElement('script'); s.async = true;
+     s.type = 'text/javascript';
+     s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+     (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+ }());
+ </script>
+ {/exp:minimee:js}
+ <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-564bba16773f4cb4" async="async"></script>
+ {analytics}
+</body>
+</html>

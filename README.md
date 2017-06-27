@@ -1,0 +1,1 @@
+# solvelight_template

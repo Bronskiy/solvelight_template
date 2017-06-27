@@ -1,0 +1,19 @@
+{exp:query sql="SELECT
+exp_br_product_category.category_id,
+exp_br_product_category.product_id,
+exp_br_category.title,
+exp_br_category.category_id,
+exp_br_category.parent_id,
+exp_br_category.url_title
+FROM
+exp_br_product_category,
+exp_br_category
+WHERE
+exp_br_product_category.product_id = '{embed:product_id}'
+and
+exp_br_category.parent_id = 141
+and
+exp_br_product_category.category_id = exp_br_category.category_id" cache="yes" refresh="48000"}
+{if no_results} -- {/if}
+<a href="/catalog/{url_title}">{title}</a>
+{/exp:query}

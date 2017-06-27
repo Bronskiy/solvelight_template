@@ -1,0 +1,9 @@
+{exp:channel:entries channel="promo_blocks" limit="1" disable="categories|category_fields|member_data|pagination" status="open|featured" cache="yes" refresh="48000" dynamic="no"}
+				<div class="sidebar-content">
+					{promo_blocks_sidebar limit="1" orderby="random"}
+					<div class="banner-box">
+						<a href="{promo_blocks_sidebar:link}"><img alt="{promo_blocks_sidebar:title}" src="{promo_blocks_sidebar:image}"></a>
+					</div>
+					{/promo_blocks_sidebar}
+				</div>
+				{/exp:channel:entries}

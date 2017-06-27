@@ -1,0 +1,498 @@
+{embed="_assets/.header" current_page="home"}
+<!--Slider Area Start-->
+<div class="slider-area-home-two">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="preview-2">
+          <div id="nivoslider" class="slides">
+            {exp:channel:entries channel="slides" disable="categories|member_data|pagination|trackbacks" status="open|featured" orderby="slide_order" sort="asc" cache="yes" refresh="48000"}
+            <a href="{banner_button}{banner_button:button_link}{/banner_button}"><img src="{banner_slide}" alt="{title}" title="#slider-1-caption{count}"/></a>
+            {/exp:channel:entries}
+          </div>
+          {exp:channel:entries channel="slides" disable="categories|member_data|pagination|trackbacks" status="open|featured" orderby="slide_order" sort="asc" cache="yes" refresh="48000"}
+          <div id="slider-1-caption{count}" class="nivo-html-caption nivo-caption">
+            <div class="timethai" style="
+            position:absolute;
+            bottom:0;
+            left:0;
+            background-color:rgba(3,153,126,0.6);
+            height:3px;
+            -webkit-animation: myfirst 5000ms ease-in-out;
+            -moz-animation: myfirst 5000ms ease-in-out;
+            -ms-animation: myfirst 5000ms ease-in-out;
+            animation: myfirst 5000ms ease-in-out;
+            ">
+          </div>
+          <div class="banner-content banner-content{count} slider-1 hidden-xs">
+            <div class="text-content text-content{count}">
+              <h2 class="title2"><span>{title}</span></h2>
+              {banner_text}
+              <h3 class="title3">{banner_text:text}</h3>
+              {/banner_text}
+              {banner_button}
+              <div class="banner-readmore">
+                <a href="{banner_button:button_link}" title="{banner_button:button_text}">{banner_button:button_text}</a>
+              </div>
+              {/banner_button}
+            </div>
+          </div>
+        </div>
+        {/exp:channel:entries}
+      </div>
+    </div>
+    {exp:channel:entries channel="home" limit="1" url_title="home_page" disable="categories|category_fields|member_data|pagination" status="open|featured" cache="yes" refresh="48000"}
+    <div class="col-md-5 hidden-sm">
+      {first_470x469_block}
+      <div class="banner-box">
+        <a href="{first_470x469_block:link}">
+          <img src="{first_470x469_block:image}" alt="top banner">
+        </a>
+      </div>
+      {/first_470x469_block}
+    </div>
+  </div>
+</div>
+</div>
+<!--End of Slider Area-->
+
+<!--Banner Area Start-->
+<div class="banner-area">
+  <div class="container">
+    <div class="section-padding">
+      <div class="row">
+        <div class="col-md-5 col-sm-5">
+          {second_470x469_block limit="1" orderby="random"}
+          <div class="banner-container">
+            <a href="{second_470x469_block:link}">
+              <img src="{second_470x469_block:image}" alt="{second_470x469_block:title}">
+            </a>
+            <div class="banner-text">
+              <h3>{second_470x469_block:title}</h3>
+              <p>{second_470x469_block:description}</p>
+              <a href="{second_470x469_block:link}">{second_470x469_block:button_text}</a>
+            </div>
+          </div>
+          {/second_470x469_block}
+        </div>
+        <div class="col-md-7 col-sm-7">
+          {four_block_set}
+          {if four_block_set:count == 1 || four_block_set:count == 3}
+          <div class="row">
+            {/if}
+            <div class="col-md-6 col-sm-6">
+              <div class="banner-box">
+                <a href="{four_block_set:link}">
+                  <img src="{four_block_set:image}" alt="banner">
+                </a>
+              </div>
+            </div>
+            {if four_block_set:count == 2 || four_block_set:count == four_block_set:total_results}
+          </div>
+          {/if}
+          {/four_block_set}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End of Banner Area-->
+{/exp:channel:entries}
+
+{exp:channel:entries channel="home" limit="12" url_title="home_page" disable="categories|category_fields|member_data|pagination" status="open|featured" cache="yes" refresh="48000"}
+<div class="timer-product-carousel-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section-title"><h2>Sale Off</h2></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="product-carousel">
+        {sale_off limit="12" random="yes"}
+        {items}
+        <div class="col-md-3">
+          {form_open}
+          <div class="single-product-item">
+            {if on_sale}<div class="sale-product-label"><span>sale</span></div>{/if}
+            <div class="single-product clearfix">
+              <a href="{exp:brilliant_retail:path src='product/{url}'}">
+                <span class="product-image">
+                  {exp:brilliant_retail:image src="{image_thumb}" width="263" height="355"}
+                </span>
+                {if on_sale && sale_price_end != ''}
+                <div class="timer">
+                  <div data-countdown="{sale_price_end format='%Y/%m/%d'}" class="timer-grid"></div>
+                </div>
+                {/if}
+              </a>
+            </div>
+            <h2 class="single-product-name"><a href="{exp:brilliant_retail:path src='product/{url}'}"> {exp:snippet total="60"}{title}{/exp:snippet} </a></h2>
+            <div class="price-box">
+              {if on_sale}
+              <p class="old-price">
+                <span class="price"> ${base}</span>
+              </p>
+              <p class="special-price">
+                <span class="price"> ${price}</span>
+              </p>
+              {if:else}
+              <p class="special-price">
+                <span class="price"> ${price}</span>
+              </p>
+              {/if}
+            </div>
+          </div>
+          {form_close}
+        </div>
+        {/items}
+        {/sale_off}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="featured-product-carousel-area">
+  <div class="container">
+    <div class="section-padding">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-title"><h2>FEATURED PRODUCTS</h2></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="product-carousel">
+          {best_sellers limit="12" random="yes"}
+          {items}
+          <div class="col-md-3">
+            {form_open}
+            <div class="single-product-item">
+              {if on_sale}<div class="sale-product-label"><span>sale</span></div>{/if}
+              <div class="single-product clearfix">
+                <a href="{exp:brilliant_retail:path src='product/{url}'}">
+                  <span class="product-image">
+                    {exp:brilliant_retail:image src="{image_thumb}" width="263" height="355"}
+                  </span>
+                </a>
+                <div class="button-actions clearfix">
+                  <button class="button add-to-cart" type="submit">
+                    <span><i class="fa fa-shopping-cart"></i></span>
+                  </button>
+                  <ul class="add-to-links">
+                    <li class="quickview">
+                      <a class="btn-quickview modal-view" href="#" data-toggle="modal" data-target="#productModal">
+                        <i class="fa fa-search-plus"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="link-wishlist" href="{exp:brilliant_retail:wishlist_add product_id="{product_id}" status="public" return="customer/wishlist"}">
+                        <i class="fa fa-heart"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <h2 class="single-product-name"><a href="{exp:brilliant_retail:path src='product/{url}'}"> {exp:snippet total="60"}{title}{/exp:snippet} </a></h2>
+              <div class="price-box">
+                {if on_sale}
+                <p class="old-price">
+                  <span class="price"> ${base}</span>
+                </p>
+                <p class="special-price">
+                  <span class="price"> ${price}</span>
+                </p>
+                {if:else}
+                <p class="special-price">
+                  <span class="price"> ${price}</span>
+                </p>
+                {/if}
+              </div>
+            </div><!--end of item 1-->
+            {form_close}
+          </div><!--end of col-md-3-->
+          {/items}
+          {/best_sellers}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{/exp:channel:entries}
+<!--End of Featured Product Carousel Area-->
+
+<!--Product Carousel Area Start-->
+{!--
+{exp:channel:entries channel="home" limit="12" url_title="home_page" disable="categories|category_fields|member_data|pagination" status="open|featured" cache="yes" refresh="48000"}
+<div class="featured-product-carousel-area">
+  <div class="container">
+    <div class="section-padding">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-title"><h2>Featured Robots</h2></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="product-carousel">
+          {featured_robots limit="12" random="yes"}
+          {items}
+          <div class="col-md-3">
+            {form_open}
+            <div class="single-product-item">
+              {if on_sale}<div class="sale-product-label"><span>sale</span></div>{/if}
+              <div class="single-product clearfix">
+                <a href="{exp:brilliant_retail:path src='product/{url}'}">
+                  <span class="product-image">
+                    {exp:brilliant_retail:image src="{image_thumb}" width="263" height="355"}
+                  </span>
+                </a>
+                <div class="button-actions clearfix">
+                  <button class="button add-to-cart" type="submit">
+                    <span><i class="fa fa-shopping-cart"></i></span>
+                  </button>
+                  <ul class="add-to-links">
+                    <li class="quickview">
+                      <a class="btn-quickview modal-view" href="#" data-toggle="modal" data-target="#productModal">
+                        <i class="fa fa-search-plus"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="link-wishlist" href="{exp:brilliant_retail:wishlist_add product_id="{product_id}" status="public" return="customer/wishlist"}">
+                        <i class="fa fa-heart"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <h2 class="single-product-name"><a href="{exp:brilliant_retail:path src='product/{url}'}"> {exp:snippet total="60"}{title}{/exp:snippet} </a></h2>
+              <div class="price-box">
+                {if on_sale}
+                <p class="old-price">
+                  <span class="price"> ${base}</span>
+                </p>
+                <p class="special-price">
+                  <span class="price"> ${price}</span>
+                </p>
+                {if:else}
+                <p class="special-price">
+                  <span class="price"> ${price}</span>
+                </p>
+                {/if}
+              </div>
+            </div><!--end of item 1-->
+            {form_close}
+          </div><!--end of col-md-3-->
+          {/items}
+          {/featured_robots}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="featured-product-carousel-area">
+  <div class="container">
+    <div class="section-padding">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-title"><h2>Featured 3D Printers</h2></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="product-carousel">
+          {featured_3d_printers limit="12" random="yes"}
+          {items}
+          <div class="col-md-3">
+            {form_open}
+            <div class="single-product-item">
+              {if on_sale}<div class="sale-product-label"><span>sale</span></div>{/if}
+              <div class="single-product clearfix">
+                <a href="{exp:brilliant_retail:path src='product/{url}'}">
+                  <span class="product-image">
+                    {exp:brilliant_retail:image src="{image_thumb}" width="263" height="355"}
+                  </span>
+                </a>
+                <div class="button-actions clearfix">
+                  <button class="button add-to-cart" type="submit">
+                    <span><i class="fa fa-shopping-cart"></i></span>
+                  </button>
+                  <ul class="add-to-links">
+                    <li class="quickview">
+                      <a class="btn-quickview modal-view" href="#" data-toggle="modal" data-target="#productModal">
+                        <i class="fa fa-search-plus"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="link-wishlist" href="{exp:brilliant_retail:wishlist_add product_id="{product_id}" status="public" return="customer/wishlist"}">
+                        <i class="fa fa-heart"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <h2 class="single-product-name"><a href="{exp:brilliant_retail:path src='product/{url}'}"> {exp:snippet total="60"}{title}{/exp:snippet} </a></h2>
+              <div class="price-box">
+                {if on_sale}
+                <p class="old-price">
+                  <span class="price"> ${base}</span>
+                </p>
+                <p class="special-price">
+                  <span class="price"> ${price}</span>
+                </p>
+                {if:else}
+                <p class="special-price">
+                  <span class="price"> ${price}</span>
+                </p>
+                {/if}
+              </div>
+            </div><!--end of item 1-->
+            {form_close}
+          </div><!--end of col-md-3-->
+          {/items}
+          {/featured_3d_printers}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="featured-product-carousel-area">
+  <div class="container">
+    <div class="section-padding">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-title"><h2>Featured UAVs</h2></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="product-carousel">
+          {featured_drones limit="12" random="yes"}
+          {items}
+          <div class="col-md-3">
+            {form_open}
+            <div class="single-product-item">
+              {if on_sale}<div class="sale-product-label"><span>sale</span></div>{/if}
+              <div class="single-product clearfix">
+                <a href="{exp:brilliant_retail:path src='product/{url}'}">
+                  <span class="product-image">
+                    {exp:brilliant_retail:image src="{image_thumb}" width="263" height="355"}
+                  </span>
+                </a>
+                <div class="button-actions clearfix">
+                  <button class="button add-to-cart" type="submit">
+                    <span><i class="fa fa-shopping-cart"></i></span>
+                  </button>
+                  <ul class="add-to-links">
+                    <li class="quickview">
+                      <a class="btn-quickview modal-view" href="#" data-toggle="modal" data-target="#productModal">
+                        <i class="fa fa-search-plus"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="link-wishlist" href="{exp:brilliant_retail:wishlist_add product_id="{product_id}" status="public" return="customer/wishlist"}">
+                        <i class="fa fa-heart"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <h2 class="single-product-name"><a href="{exp:brilliant_retail:path src='product/{url}'}"> {exp:snippet total="60"}{title}{/exp:snippet} </a></h2>
+              <div class="price-box">
+                {if on_sale}
+                <p class="old-price">
+                  <span class="price"> ${base}</span>
+                </p>
+                <p class="special-price">
+                  <span class="price"> ${price}</span>
+                </p>
+                {if:else}
+                <p class="special-price">
+                  <span class="price"> ${price}</span>
+                </p>
+                {/if}
+              </div>
+            </div><!--end of item 1-->
+            {form_close}
+          </div><!--end of col-md-3-->
+          {/items}
+          {/featured_drones}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{/exp:channel:entries}
+--}
+<!--End of Product Carousel Area-->
+<div class="blog-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section-title"><h2>From the blog</h2></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="blog-carousel">
+        {exp:channel:entries channel="blog" limit="3" sticky="no" orderby="date" sort="desc" disable="categories|category_fields|member_data|pagination" status="open|featured" cache="yes" refresh="48000"}
+        <div class="col-md-4">
+          <div class="banner-box">
+            <a href="{url_title_path='blog'}" class="image-blog"><img src="{blog_img:frontpage}" alt="{title}"></a>
+            <div class="single-blog">
+              <span class="date-time">
+                <span class="days">{entry_date format="%d"}</span>
+                <span class="months">{entry_date format="%M"}</span>
+              </span>
+              <a class="blog-title" href="{url_title_path='blog'}"><span>{title}</span></a>
+              <p class="author">By {author}<span> ( 0 comments )</span></p>
+              <p class="no-margin">{blog_summary}</p>
+            </div>
+          </div>
+        </div>
+        {/exp:channel:entries}
+      </div>
+    </div>
+  </div>
+</div>
+<!--Banner Area Start-->
+{exp:channel:entries channel="promo_blocks" limit="1" disable="categories|category_fields|member_data|pagination" status="open|featured" cache="yes" refresh="48000" dynamic="no"}
+<div class="banner-area section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
+        {promo_blocks_extra_wide limit="1" orderby="random"}
+        <div class="banner-box">
+          <a href="{promo_blocks_extra_wide:link}">
+            <img src="{promo_blocks_extra_wide:image}" alt="{promo_blocks_extra_wide:alt_title}">
+          </a>
+        </div>
+        {/promo_blocks_extra_wide}
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        {promo_blocks_wide limit="1" orderby="random"}
+        <div class="banner-box">
+          <a href="{promo_blocks_wide:link}">
+            <img src="{promo_blocks_wide:image}" alt="{promo_blocks_wide:alt_title}">
+          </a>
+        </div>
+        {/promo_blocks_wide}
+      </div>
+    </div>
+  </div>
+</div>
+{/exp:channel:entries}
+<!--End of Banner Area-->
+{exp:channel:entries channel="promo_blocks" limit="1" disable="categories|category_fields|member_data|pagination" status="open|featured" cache="yes" refresh="48000" dynamic="no"}
+<div class="banner-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs">
+        {promo_blocks_full_width limit="1" orderby="random"}
+        <div class="banner-box">
+          <a href="{promo_blocks_full_width:link}">
+            <img src="{promo_blocks_full_width:image}" alt="{promo_blocks_full_width:alt_title}">
+          </a>
+        </div>
+        {/promo_blocks_full_width}
+      </div>
+    </div>
+  </div>
+</div>
+{/exp:channel:entries}
+{embed="_assets/.manufacturer"}
+{embed="_assets/.footer"}

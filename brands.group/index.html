@@ -1,0 +1,44 @@
+{embed="_assets/.header"}
+
+<div class="home-hello-info">
+  <div class="container">
+    <div class="row">
+					<div class="col-md-12">
+						<div class="f-title text-center">
+							<h3 class="title text-uppercase">Manufacturers</h3>
+						</div>
+					</div>
+				</div>
+    <div class="row">
+      <div class="manufacturer">
+        {exp:query sql="SELECT
+        exp_br_category.title,
+        exp_br_category.image,
+        exp_br_category.parent_id,
+        exp_br_category.detail,
+        exp_br_category.sort,
+        exp_br_category.url_title
+        FROM
+        exp_br_category
+        WHERE
+        exp_br_category.parent_id = 141
+        and
+        exp_br_category.image != ''
+        ORDER BY sort ASC" cache="yes" refresh="48000"}
+        <div class="col-md-3">
+          <div class="banner-box">
+            <a href="/catalog/{url_title}" class="image-blog"><img src="/media/images/{image}" alt="{title}"></a>
+            <div class="single-blog">
+              <a class="manufacturer-title" href="/catalog/{url_title}"><span>{title}</span></a>
+              <p class="no-margin">{exp:snippet total="150" word="true" ellipsis="..."}{detail}{/exp:snippet}</p>
+            </div>
+          </div>
+        </div>
+        {if count%4 == 0}<div class="clearfix"></div>{/if}
+        {/exp:query}
+      </div>
+    </div>
+  </div>
+</div>
+
+{embed="_assets/.footer"}

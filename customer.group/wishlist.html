@@ -1,0 +1,76 @@
+{embed="_assets/.header"}
+{if logged_out}
+{redirect='customer/login'}
+{/if}
+<!--Wishlist Area Start-->
+<div class="wishlist-concept area-padding">
+  <div class="container">
+    <div class="row">
+      {embed="customer/_sidebar"}
+      <div class="col-sm-12 col-lg-9 col-md-9">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="page-title">
+              <h1>My Wishlist</h1>
+              {exp:brilliant_retail:show_message}
+            </div>
+          </div>
+        </div>
+        {exp:brilliant_retail:wishlist}
+        {no_results}
+        <h4 id="wishlist_heading">Wishlist</h4>
+        <div id="wishlist_noresult">There are no items in your wishlist</div>
+        {/no_results}
+
+        <div class="table-responsive">
+
+          <table class="cart-table">
+            <thead>
+              <tr>
+                <th class="product-img">Image</th>
+                <th>Details and Notes</th>
+                <th class="text-center add-cart-info">Add to Cart</th>
+                <th>Public</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {results}
+              <tr>
+                <td class="product-img">
+                  <a href="{path='/product'}/{url_title}" class="tb-img">{exp:brilliant_retail:image src="{image_thumb}" width="113" height="113" class="img-responsive"}</a>
+                </td>
+                {exp:brilliant_retail:product product_id="{product_id}"}
+                <td>
+                  <h6><a href="{path='/product'}/{url_title}">{title}</a></h6>
+                  <p>{exp:snippet total="200" word="true" ellipsis="..."}{product_description_full}{/exp:snippet}</p>
+                  <br />
+                  {notes}
+                </td>
+                <td class="text-center add-cart-info">
+                  <div class="price-box">
+                    <span class="old-price">{base}</span>
+                    <span class="special-price">{price}</span>
+                  </div>
+                  <label>Quantity</label>
+                  {quantity_select}
+                  <button class="button btn-cart" type="submit"><span>Add to Cart</span></button>
+                </td>
+                {/exp:brilliant_retail:product}
+                <td>{if {is_public}}Yes{if:else}No{/if}</td>
+                <td class="p-action"><a href="{remove_link}"></a></td>
+              </tr>
+              {/results}
+            </tbody>
+          </table>
+        </div>
+        <div class="all-cart-buttons">
+          <button class="button btn-cart" type="button"><a href="{path='wishlist/{share_hash}'}" target="_blank"><span>Share Wishlist</span></a></button>
+          <button class="button btn-cart" type="button"><a href="{path='customer/wishlist_manage'}"><span>Manage wishlist</span></a></button>
+          </div>
+          {/exp:brilliant_retail:wishlist}
+      </div>
+    </div>
+  </div>
+</div>
+{embed="_assets/.footer"}

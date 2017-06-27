@@ -1,0 +1,193 @@
+{embed="_assets/.header"}
+<!--Cart Main Area Start-->
+<div class="cart-main-area area-padding">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="page-title">
+					<h1>Shopping Cart</h1>
+				</div>
+				<div class="bs-example-bg-classes">
+					{exp:brilliant_retail:show_message}
+					{if {exp:brilliant_retail:cart_items} == 0}
+					<p class="bg-warning">Your shopping cart is empty.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+					{if:else}
+					<p class="bg-success">Your shopping cart contains: {exp:brilliant_retail:cart_items} {if {exp:brilliant_retail:cart_items} == 1}product{if:else}products{/if}</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12">
+				<div class="cart-table table-responsive">
+					{exp:brilliant_retail:cart}
+					<fieldset>
+						<div id="order-detail-content">
+							<table>
+								<thead>
+									<tr>
+										<th class="p-image">Product Image</th>
+										<th class="p-name">Product Name</th>
+										<th class="p-amount">Unit Price</th>
+										<th class="p-quantity">Qty</th>
+										<th class="p-total">SubTotal</th>
+										<th class="p-times"></th>
+									</tr>
+								</thead>
+								<tbody>
+									{items}
+									<tr>
+										<td class="p-image">
+											<a href="{exp:brilliant_retail:path src='product/{url_title}'}">{exp:brilliant_retail:image src="{image_thumb}" class="floatleft" width="70" height="95"}</a>
+										</td>
+										<td class="p-name">
+											<a href="{exp:brilliant_retail:path src='product/{url_title}'}">{title}</a>
+											{if options != ""}
+											<p class="item_options">Options: {options}</p>
+											{/if}
+										</td>
+										<td class="p-amount">
+											{if on_sale}
+												<span style="text-decoration:line-through;">{base}</span>
+												
+												<span>{price}</span>
+											{if:else}
+											<span class="cart-price">{price}</span>
+											{/if}
+										</td>
+										<td class="p-quantity">
+											<input name="qty[{hash}]" class="qty" type="text" value="{quantity}" />
+											<button type="submit" class="qty-update"><i class="fa fa-refresh"></i></button>
+										</td>
+										<td class="p-total">{subtotal}</td>
+										<td class="p-action"><a href="{remove_link}"><i class="fa fa-times"></i></a></td>
+									</tr>
+									{/items}
+								</tbody>
+							</table>
+						</div>
+					</fieldset>
+					{/exp:brilliant_retail:cart}
+					<div class="all-cart-buttons">
+						<button class="button" type="button"><a href="{exp:brilliant_retail:path src=''}"><span>Continue Shopping</span></a></button>
+						<div class="floatright">
+							<button class="button clear-cart" type="button"><a href="{exp:brilliant_retail:cart_clear_link}"><span>Clear Shopping Cart</span></a></button>
+							<button class="button" type="button"><a href="{exp:brilliant_retail:path src='checkout'}"><span>Procced to checkout</span></a></button>
+
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						{!--
+						<div class="shipping-discount">
+							<div class="shipping-title">
+								<h3>Estimate Shipping And Tax</h3>
+							</div>
+							<p>Enter your destination to get shipping &amp; tax</p>
+							<div class="row">
+								<div class="col-lg-12 col-md-12 col-sm-6">
+									<div class="level">
+										Country <span class="required">*</span>
+									</div>
+									<div class=" shipping-wrapper">
+										<select class="country">
+											<option value="state">Select options</option>
+											<option value="state">Bahasa Indonesia</option>
+											<option value="state">Bahasa Melayu</option>
+											<option value="state">Deutsch (Deutschland)</option>
+											<option value="state">English (Australia)</option>
+											<option value="state">English (Canada)</option>
+											<option value="state">English (India)</option>
+											<option value="state">English (Ireland)</option>
+											<option value="state">English (Maktoob)</option>
+											<option value="state">English (Malaysia)</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-6">
+									<div class="level">
+										State/Province
+									</div>
+									<div class=" shipping-wrapper">
+										<select class="country">
+											<option value="state">Select options</option>
+											<option value="state">South Carolina</option>
+											<option value="state">South Dakota</option>
+											<option value="state">Tennessee</option>
+											<option value="state">Texas</option>
+											<option value="state">Utah</option>
+											<option value="state">Vermont</option>
+											<option value="state">Virginia</option>
+											<option value="state">Washington</option>
+											<option value="state">West Virginia</option>
+											<option value="state">Wyoming</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12">
+									<div class="postal-code">
+										<div class="level">
+											Zip / Postal Code
+										</div>
+										<input type="text" placeholder="" name="zip-code">
+									</div>
+									<div class="buttons-set">
+										<button class="button" type="button"><span>Get a Quote</span></button>
+									</div>
+								</div>
+							</div>
+						</div>
+						--}
+					</div>
+					<div class="col-md-4">
+						<div class="shipping-discount">
+							<div class="shipping-title">
+								<h3>Discount Code</h3>
+							</div>
+							<p>Enter your coupon code if you have one</p>
+							{exp:brilliant_retail:promo_form}
+	                {if '{coupon_code}' == ""}
+							<div class="row">
+								<div class="col-lg-12 col-md-12 col-sm-12">
+									<div class="postal-code">
+										<input name="code" value="{coupon_code}" type="text" placeholder="Discount Code?">
+									</div>
+									<div class="buttons-set">
+										<button class="button" type="apply"><span>Apply Coupon</span></button>
+									</div>
+								</div>
+							</div>
+							{/if}
+							{if '{coupon_code}' != ""}
+							<div class="buttons-set">
+								<button class="button" type="apply" name="code" value="remove"><span>Remove Discount</span></button>
+							</div>
+							{/if}
+					{/exp:brilliant_retail:promo_form}
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="amount-totals">
+							{exp:brilliant_retail:cart_discount}
+							<p class="total">Subtotal <span>{subtotal}</span></p>
+							<p class="total">Discount <span>{discount}</span></p>
+							<p class="total">Code <span>{coupon_code}</span></p>
+							{/exp:brilliant_retail:cart_discount}
+							<p class="total">Grandtotal <span>{exp:brilliant_retail:cart_total}</span></p>
+							<button class="button" type="button"><a href="{exp:brilliant_retail:path src='checkout'}"><span>Procced to checkout</span></a></button>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{/if}
+{embed="_assets/.footer"}

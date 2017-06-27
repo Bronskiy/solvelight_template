@@ -1,0 +1,19 @@
+<div class="sidebar-content">
+  <div class="section-title no-margin"><h2>Popular Tags</h2></div>
+  <div class="popular-tags">
+    <ul class="tag-list">
+      {exp:tag:cloud
+        channel="brilliantretail_1"
+        most_popular="25"
+        limit="10"
+        orderby="total_entries"
+        cache="yes" refresh="48000"	}
+        <li>
+          <a href="/product/tags/{websafe_tag}">
+            {tag} ({total_entries})
+          </a>
+        </li>
+        {/exp:tag:cloud}
+      </ul>
+    </div>
+  </div>

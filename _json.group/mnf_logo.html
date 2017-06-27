@@ -1,0 +1,23 @@
+{exp:http_header content_type="application/json"}
+
+{
+  "owl" : [
+  {exp:query sql="SELECT
+  exp_br_category.title,
+  exp_br_category.image,
+  exp_br_category.parent_id,
+  exp_br_category.sort,
+  exp_br_category.url_title
+  FROM
+  exp_br_category
+  WHERE
+  exp_br_category.parent_id = 141
+  and
+  exp_br_category.image != ''
+  ORDER BY sort ASC" cache="yes" refresh="48000"}
+
+  {"item" : "<div class='col-md-2'><div class='single-brand'><a href='/catalog/{url_title}'><img class='lazyOwl' data-src='/media/images/_mnf_logo/{image}' alt='{title}'></a></div></div>"}{if total_results != count},{/if}
+  {/exp:query}
+
+  ]
+}

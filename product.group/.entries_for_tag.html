@@ -1,0 +1,72 @@
+<div class="row">
+  <h1>{embed:entries_array}</h1>
+  {exp:query sql="SELECT
+  exp_br_product_entry.product_id as query_product_id,
+  exp_br_product_entry.entry_id as query_entry_id,
+  exp_br_product.enabled,
+  exp_br_product.product_id as enabled_product_id
+  FROM
+  exp_br_product_entry,
+  exp_br_product
+  WHERE
+  exp_br_product.enabled = 1 AND
+  exp_br_product.product_id = exp_br_product_entry.product_id AND
+  exp_br_product_entry.entry_id IN ('{embed:entries_array}')" cache="yes" refresh="48000"}
+  {if no_results} Sorry, we can't find anything for this tag. {/if}
+
+|{count}|{total_results}|{query_product_id}
+  {exp:brilliant_retail:product product_id="{query_product_id}" form="no"}
+  <div class="col-md-4 col-sm-4">
+
+    <div class="single-product-item">
+      {if on_sale}<div class="sale-product-label"><span>sale</span></div>{/if}
+      <div class="single-product clearfix">
+        <a href="{url_title_path='product'}">
+          <span class="product-image">
+            {exp:brilliant_retail:image src="{image_thumb}" width="272" height="385"}
+          </span>
+        </a>
+        <div class="button-actions clearfix">
+          <button class="button add-to-cart" type="submit">
+            <span><i class="fa fa-shopping-cart"></i></span>
+          </button>
+          <ul class="add-to-links">
+            <li class="quickview">
+              <a class="btn-quickview modal-view" href="#" data-toggle="modal" data-target="#productModal">
+                <i class="fa fa-search-plus"></i>
+              </a>
+            </li>
+            <li>
+              <a class="link-wishlist" href="{exp:brilliant_retail:wishlist_add product_id="{query_product_id}" status="public" return="customer/wishlist"}">
+                <i class="fa fa-heart"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <h2 class="single-product-name"><a href="{url_title_path='product'}">{exp:snippet total="60"}{title}{/exp:snippet}</a></h2>
+      <div class="price-box">
+        |{count}|{total_results}|
+        {if on_sale}
+        {sale_start format="%d/%y"}
+        <p class="old-price">
+          <span class="price">${base}</span>
+        </p>
+        <p class="special-price">
+          <span class="price">${price}</span>
+        </p>
+        {if:else}
+        <p class="special-price">
+          <span class="price">${price}</span>
+        </p>
+        {/if}
+      </div>
+    </div>
+
+  </div>
+  {if count%3==0}<div class="clearfix"></div>{/if}
+  {/exp:brilliant_retail:product}
+  {/exp:query}
+
+
+</div>

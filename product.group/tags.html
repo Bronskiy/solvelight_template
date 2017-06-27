@@ -1,0 +1,229 @@
+{embed="_assets/.header"}
+<div class="breadcrumb-container">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="breadcrumbs">
+					<ul>
+						<li class="home"><a href="{exp:brilliant_retail:path src='site_index'}">Home</a><span>/ </span></li>
+						<li>Tag: <strong>{exp:tag:tag_name
+							tag="{segment_3}"
+							case="title"
+						}</strong></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="banner-image-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Viewing all products tagged with: <span>{exp:tag:tag_name tag="{segment_3}" case="title"}</span></h1>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="shop-main-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9">
+				<div class="shop-item-filter">
+					<div class="shop-tab clearfix">
+						<ul class="nav nav-tabs navbar-left" role="tablist">
+							<li role="presentation" {if '{mode}' == 'grid'}class="active"{/if}><a href="#grid" class="grid-view" aria-controls="grid" role="tab" data-toggle="tab">Grid</a></li>
+							<li role="presentation" {if '{mode}' == 'list'}class="active"{/if}><a href="#list" class="list-view" aria-controls="list" role="tab" data-toggle="tab">List</a></li>
+						</ul>
+						<div class="filter-by">
+							<h4>Short by </h4>
+							<div class="select-filter">
+								<select onchange="setLocation(this.value)" class="sorts">
+									<option value="{exp:brilliant_retail:path src='{link_sort_relevance}'}" {if '{sort_selected}' == 'relevance'}selected="selected"{/if}>Relevance</option>
+									<option value="{exp:brilliant_retail:path src='{link_sort_price}'}" {if '{sort_selected}' == 'price'}selected="selected"{/if}>Price</option>
+									<option value="{exp:brilliant_retail:path src='{link_sort_name}'}" {if '{sort_selected}' == 'name'}selected="selected"{/if}>Name</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="grid">
+						<div class="row">
+							{exp:tag:entries tag="{segment_3}" tag_group_id="1" inclusive="yes" orderby="title" sort="asc"}
+
+							{exp:query sql="SELECT
+							exp_br_product_entry.product_id,
+							exp_br_product_entry.entry_id
+							FROM
+							exp_br_product_entry
+							WHERE
+							exp_br_product_entry.entry_id = {entry_id}" cache="yes" refresh="48000"}
+							{if no_results} Sorry, we can't find anything for this tag. {/if}
+
+							{exp:brilliant_retail:product product_id="{product_id}" form="no"}
+							<div class="col-md-4 col-sm-4 single-product-wrapper">
+								{form_open}
+								<div class="single-product-item">
+									{if on_sale}<div class="sale-product-label"><span>sale</span></div>{/if}
+									<div class="single-product clearfix">
+										<a href="{url_title_path='product'}">
+											<span class="product-image">
+												{exp:brilliant_retail:image src="{image_thumb}" width="272" height="385"}
+											</span>
+										</a>
+										<div class="button-actions clearfix">
+											<button class="button add-to-cart" type="submit">
+												<span><i class="fa fa-shopping-cart"></i></span>
+											</button>
+											<ul class="add-to-links">
+												<li class="quickview">
+													<a class="btn-quickview modal-view" href="#" data-toggle="modal" data-target="#productModal">
+														<i class="fa fa-search-plus"></i>
+													</a>
+												</li>
+												<li>
+													<a class="link-wishlist" href="{exp:brilliant_retail:wishlist_add product_id="{query_product_id}" status="public" return="customer/wishlist"}">
+														<i class="fa fa-heart"></i>
+													</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<h2 class="single-product-name"><a href="{url_title_path='product'}">{exp:snippet total="60"}{title}{/exp:snippet}</a></h2>
+									<div class="price-box">
+										{if on_sale}
+										{sale_start format="%d/%y"}
+										<p class="old-price">
+											<span class="price">${base}</span>
+										</p>
+										<p class="special-price">
+											<span class="price">${price}</span>
+										</p>
+										{if:else}
+										<p class="special-price">
+											<span class="price">${price}</span>
+										</p>
+										{/if}
+									</div>
+								</div>
+								{form_close}
+
+							</div>
+							{/exp:brilliant_retail:product}
+							{/exp:query}
+							{/exp:tag:entries}
+						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane shop-list" id="list">
+						{exp:tag:entries tag="{segment_3}" tag_group_id="1" inclusive="yes" orderby="title" sort="asc"}
+
+						{exp:query sql="SELECT
+						exp_br_product_entry.product_id,
+						exp_br_product_entry.entry_id
+						FROM
+						exp_br_product_entry
+						WHERE
+						exp_br_product_entry.entry_id = {entry_id}" cache="yes" refresh="48000"}
+						{if no_results} Sorry, we can't find anything for this tag. {/if}
+
+						{exp:brilliant_retail:product product_id="{product_id}" form="no"}
+						<div class="row">
+
+							<div class="col-md-12">
+								{form_open}
+								<div class="single-product-item">
+									<div class="row">
+										<div class="col-md-3 col-sm-4">
+											<div class="single-product clearfix">
+												<a href="{url_title_path='product'}">
+													<span class="product-image">
+														{exp:brilliant_retail:image src="{image_thumb}" width="232" height="256"}
+													</span>
+												</a>
+											</div>
+										</div>
+										<div class="col-md-9 col-sm-8">
+											<h2 class="single-product-name"><a href="{url_title_path='product'}">{title}</a></h2>
+											<div class="description">
+												{exp:brilliant_retail:product_custom product_id="{query_product_id}"}
+												<p>{exp:snippet total="250"}{product_description_full}{/exp:snippet}</p>
+												{/exp:brilliant_retail:product_custom}
+											</div>
+											<div class="price-box">
+												{if on_sale}
+												{sale_start format="%d/%y"}
+												<p class="old-price">
+													<span class="price">${base}</span>
+												</p>
+												<p class="special-price">
+													<span class="price">
+														<span id="our_price_display">${price}</span>
+													</span>
+												</p>
+												{if:else}
+												<p class="special-price">
+													<span class="price">
+														<span id="our_price_display">${price}</span>
+													</span>
+												</p>
+												{/if}
+											</div>
+											<div class="button-actions clearfix">
+												<button class="button add-to-cart" type="submit">
+													<span><i class="fa fa-shopping-cart"></i></span>
+												</button>
+												<ul class="add-to-links">
+													<li class="quickview">
+														<a class="btn-quickview modal-view" href="#" data-toggle="modal" data-target="#productModal">
+															<i class="fa fa-search-plus"></i>
+														</a>
+													</li>
+													<li>
+														<a class="link-wishlist" href="{exp:brilliant_retail:wishlist_add product_id="{query_product_id}" status="public" return="customer/wishlist"}">
+															<i class="fa fa-heart"></i>
+														</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+								{form_close}
+							</div>
+
+						</div>
+						{/exp:brilliant_retail:product}
+						{/exp:query}
+						{/exp:tag:entries}
+					</div>
+				</div>
+
+			</div>
+			<div class="col-md-3">
+				<div class="sidebar-content">
+					{exp:brilliant_retail:catalog_layered}
+
+					<div class="section-title"><h2>{result_layered_label}</h2></div>
+					<div class="sidebar-category-list">
+						<ul>
+							{result_layered_item}
+							<li {if result_layered_selected}class="selected"{/if}><a href="{exp:brilliant_retail:path src='{result_layered_link}'}">{result_layered_title} {result_layered_count}</a></li>
+							{/result_layered_item}
+						</ul>
+					</div>
+					{/exp:brilliant_retail:catalog_layered}
+
+				</div>
+				{embed="product/.sidebar_featured"}
+				{embed="product/.sidebar_banner"}
+				{embed="product/.sidebar_latest"}
+				{embed="product/.sidebar_tags"}
+
+			</div>
+		</div>
+	</div>
+</div>
+{embed="_assets/.manufacturer"}
+{embed="_assets/.footer"}

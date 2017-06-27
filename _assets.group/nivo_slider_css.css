@@ -1,0 +1,58 @@
+{exp:channel:entries channel="slides" disable="categories|member_data|pagination|trackbacks" status="open|featured" orderby="slide_order" sort="asc" cache="yes" refresh="48000"}
+{banner_text_block_settings}
+.slider-area-home-two .text-content{count}{
+  {if banner_text_block_settings:max_width}
+  max-width:{banner_text_block_settings:max_width};
+  {/if}
+  {if banner_text_block_settings:left}
+  left:{banner_text_block_settings:left};
+  {/if}
+  {if banner_text_block_settings:right}
+  right:{banner_text_block_settings:right};
+  {/if}
+  {if banner_text_block_settings:top}
+  top:{banner_text_block_settings:top};
+  {/if}
+  {if banner_text_block_settings:bottom}
+  bottom:{banner_text_block_settings:bottom};
+  {/if}
+}
+{/banner_text_block_settings}
+{banner_title_settings}
+.banner-content{count} h2{
+  {if banner_title_settings:font_color}
+  color:{banner_title_settings:font_color};
+  {/if}
+  {if banner_title_settings:font_size}
+  font-size:{banner_title_settings:font_size};
+  {/if}
+  text-align:{banner_title_settings:text_align};
+}
+{/banner_title_settings}
+{banner_text}
+.banner-content{count} h3{
+  {if banner_text:font_color}
+  color:{banner_text:font_color};
+  {/if}
+  {if banner_text:font_size}
+  font-size:{banner_text:font_size};
+  {/if}
+  text-align:{banner_text:text_align};
+}
+{/banner_text}
+{banner_button}
+.banner-content{count} .banner-readmore{
+  text-align:{banner_button:button_align};
+}
+.banner-content{count} .banner-readmore a{
+  {if banner_button:button_color}
+  background:{banner_button:button_color} none repeat scroll 0 0;
+  {/if}
+}
+{if banner_button:button_hover_color}
+.banner-content{count} .banner-readmore a:hover{
+  background-color:{banner_button:button_hover_color};
+}
+{/if}
+{/banner_button}
+{/exp:channel:entries}

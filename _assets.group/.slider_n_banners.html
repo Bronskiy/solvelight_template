@@ -1,0 +1,79 @@
+    <!--Slider Area Start-->
+    <div class="slider-area">
+      <div class="preview-2">
+        <div id="nivoslider" class="slides">
+          {exp:channel:entries channel="banner" disable="categories|member_data|pagination|trackbacks" status="open|featured" cache="yes" refresh="48000"}
+          <a href="{banner_link}"><img src="{banner_slides}" alt="" title="#slider-1-caption{count}"/></a>
+          {/exp:channel:entries}
+        </div>
+        {exp:channel:entries channel="banner" disable="categories|member_data|pagination|trackbacks" status="open|featured" cache="yes" refresh="48000"}
+        <div id="slider-1-caption{count}" class="nivo-html-caption nivo-caption">
+          <div class="timethai" style="
+          position:absolute;
+          bottom:0;
+          left:0;
+          background-color:rgba(3,153,126,0.6);
+          height:3px;
+          -webkit-animation: myfirst 5000ms ease-in-out;
+          -moz-animation: myfirst 5000ms ease-in-out;
+          -ms-animation: myfirst 5000ms ease-in-out;
+          animation: myfirst 5000ms ease-in-out;
+          ">
+        </div>
+        <div class="banner-content slider-1 hidden-xs">
+          <div class="text-content">
+            <h2 class="title2" ><span>{banner_header}</span></h2>
+            <h3 class="title3">{banner_text}</h3>
+            <div class="banner-readmore">
+              <a href="{banner_link}" title="Read more">Read more</a>
+            </div>
+          </div>
+        </div>
+      </div>
+        {/exp:channel:entries}
+</div>
+</div>
+<!--End of Slider Area-->
+<!--Banner Area Start-->
+<div class="banner-area">
+  <div class="container">
+    <div class="section-padding">
+      <div class="row">
+        <div class="col-md-5 col-sm-5">
+          {exp:channel:entries channel="promo_blocks" limit="1" disable="categories|member_data|pagination|trackbacks" status="open|featured" cache="yes" refresh="48000" dynamic="no"}
+          {promo_blocks_square limit="1" orderby="random"}
+          <div class="banner-container">
+            <a href="{promo_blocks_square:link}">
+              <img src="{promo_blocks_square:image}" alt="{title}">
+            </a>
+            <div class="banner-text">
+              <h3>{promo_blocks_square:title}</h3>
+              <p>{promo_blocks_square:description}</p>
+              <a href="{promo_blocks_square:link}">{promo_blocks_square:button_text}</a>
+            </div>
+          </div>
+          {/promo_blocks_square}
+          {/exp:channel:entries}
+        </div>
+        <div class="col-md-7 col-sm-7">
+          {exp:channel:entries channel="home_ad" limit="4" orderby="random" disable="categories|member_data|pagination|trackbacks" status="open|featured" cache="yes" refresh="48000"}
+          {if count == 1 || count == 3}
+          <div class="row">
+            {/if}
+            <div class="col-md-6 col-sm-6">
+              <div class="banner-box">
+                <a href="{home_ad_link}">
+                  <img src="{home_ad_banner:banner}" alt="">
+                </a>
+              </div>
+            </div>
+          {if count == 2 || count == total_results}
+        </div>
+        {/if}
+          {/exp:channel:entries}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End of Banner Area-->
