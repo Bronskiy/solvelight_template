@@ -25,7 +25,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-9 col-md-9">
-				<div class="product-details-content row">
+				<div class="product-details-content {call_to_action}{if call_to_action:hide_price =='yes'}hide-price{/if} {if call_to_action:hide_add_to_cart =='yes'}hide-add-to-cart{/if}{/call_to_action} row">
 					<div class="col-lg-6 col-md-6 col-sm-6">
 						<div class="zoomWrapper">
 							<div id="img-1" class="zoomWrapper single-zoom">
@@ -70,6 +70,8 @@
 							</p>
 							<p class="no-rating no-margin"><a href="#disqus_thread">Comments</a> | <a onclick="$('a[href=\'#disqus_thread\']').trigger('click');$('#disqus_thread').goTo();">Write a review</a></p>
 							<p class="product-brand"><span>Brand:</span> {embed="product/.manufacturer_category" product_id="{product_id}"}</p>
+
+
 							<p class="availability">Availability:
 								{if in_stock == FALSE}
 								<span class="out-of-stock">Out of Stock</span>
@@ -153,6 +155,17 @@
 								</div>
 							</div>
 							{/if}
+							{call_to_action}
+							{if call_to_action:button_title}
+							<div class="cart-qty-button">
+								<a href="{call_to_action:button_link}">
+							<button class="button btn-cart" type="button"><span>{call_to_action:button_title}</span></button>
+						</a>
+						</div>
+						<div class="clearfix"></div>
+							{/if}
+							<p>{call_to_action:text}</p>
+							{/call_to_action}
 						</div>
 					</div>
 				</div>
