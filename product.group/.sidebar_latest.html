@@ -4,7 +4,7 @@
 	<div class="section-title"><h2>Latest Products</h2></div>
 	<div class="category-products">
 		{items}
-		<div class="product-items">
+		<div class="product-items {embed='product/_extra_statuses' product_id='{product_id}'}">
 			<div class="p-category-image">
 				<a href="{exp:brilliant_retail:path src='product/{url}'}">
 					{exp:brilliant_retail:image src="{image_thumb}" width="80" height="100"}

@@ -94,7 +94,7 @@
 							{results}
 							<div class="col-md-4 col-sm-4">
 								{form_open}
-								<div class="single-product-item">
+								<div class="single-product-item {embed='product/_extra_statuses' product_id='{product_id}'}">
 									{if on_sale}<div class="sale-product-label"><span>sale</span></div>{/if}
 									<div class="single-product clearfix">
 										<a href="{exp:brilliant_retail:path src='product/{url}'}">
@@ -148,7 +148,7 @@
 						<div class="row">
 							{form_open}
 							<div class="col-md-12">
-								<div class="single-product-item">
+								<div class="single-product-item {embed='product/_extra_statuses' product_id='{product_id}'}">
 									<div class="row">
 										<div class="col-md-3 col-sm-4">
 											<div class="single-product clearfix">

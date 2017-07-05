@@ -65,7 +65,7 @@
 							{exp:brilliant_retail:product product_id="{product_id}" form="no"}
 							<div class="col-md-4 col-sm-4 single-product-wrapper">
 								{form_open}
-								<div class="single-product-item">
+								<div class="single-product-item {embed='product/_extra_statuses' product_id='{product_id}'}">
 									{if on_sale}<div class="sale-product-label"><span>sale</span></div>{/if}
 									<div class="single-product clearfix">
 										<a href="{url_title_path='product'}">
@@ -133,7 +133,7 @@
 
 							<div class="col-md-12">
 								{form_open}
-								<div class="single-product-item">
+								<div class="single-product-item {embed='product/_extra_statuses' product_id='{product_id}'}">
 									<div class="row">
 										<div class="col-md-3 col-sm-4">
 											<div class="single-product clearfix">
